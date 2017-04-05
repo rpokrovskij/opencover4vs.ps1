@@ -30,8 +30,7 @@ NUinit attribute `Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAtt
 
 This will not move `appsettings.json` to the `MSTest.exe` execution folder, therefore it will be unaccessible for test code.
 
-WORKAROUND
-Recreate files from resources in unit test constructor:
+Workouround: recreate files from resources in unit test constructor:
 
     [TestClass]
     public class StandardConfigurationUnitTest
