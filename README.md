@@ -39,7 +39,7 @@ Workouround: recreate files from resources in unit test constructor:
         {
             string fileName = "appsettings.json";
             using (var reader = new StreamReader(Assembly.GetExecutingAssembly()
-                .GetManifestResourceStream(string.Format("{0}.{1}", this.GetType().Namespace, fileName))))
+                .GetManifestResourceStream(this.GetType().Namespace+"."+fileName)))
                 using (var fileStream = new FileStream(fileName, FileMode.Create))
                     reader.BaseStream.CopyTo(fileStream);
         }
