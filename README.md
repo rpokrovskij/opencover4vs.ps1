@@ -1,5 +1,5 @@
 # opencover4vs.ps1
-Smart powershell script for VisualStudio to start OpenCover+ReportGenerator.
+Smart powershell script for VisualStudio to generate code coverage report using OpenCore and ReportGenerator.
 Works with classic framework only (not Core).
 
 HOW TO START
