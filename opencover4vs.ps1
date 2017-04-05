@@ -1,10 +1,13 @@
-#CONFIGURATION
+# Generate code coverage report using OpenCore and ReportGenerator
+# Put this file to Visual Studio solution folder. 
+
+# CONFIGURATION
 $mstestLocation = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\MSTest.exe' 
 $TestDllsPatterns = @(,'*\bin\Debug\*.Test.dll')  # use prefix to filter out xUnit Core tests (since they are from bin\Debug\netcore*). 
 $TestableCodeNamespacePatterns = @(,'*') 
 
 # STEP 0. Get Solution Folder
-$SolutionFolder = $PSScriptRoot #or enter it manually there
+$SolutionFolder = $PSScriptRoot #or enter it manually there 
 
 if ($SolutionFolder -eq ''){
     throw "Rut it as script from the VS solution's root folder, this will point the location of the solution."
@@ -15,7 +18,7 @@ if ($SolutionFolder -eq ''){
 $openCoverFolder = Get-ChildItem -Path "$SolutionFolder\packages" -Filter 'Opencover*' | Where-Object { $_.Attributes -eq "Directory"}
 $openCoverLocation = "$SolutionFolder\packages\$openCoverFolder\tools\OpenCover.Console.exe"
 
-# STEP 2. Get OpenCover path
+# STEP 2. Get ReportGenerator path
 $reportGeneratorFolder = Get-ChildItem -Path "$SolutionFolder\packages" -Filter 'ReportGenerator*' | Where-Object { $_.Attributes -eq "Directory"}
 $reportGeneratorLocation = "$SolutionFolder\packages\$reportGeneratorFolder\tools\ReportGenerator.exe"
 
