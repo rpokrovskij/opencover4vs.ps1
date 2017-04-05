@@ -3,13 +3,13 @@ Smart powershell script for VisualStudio to generate code coverage report using 
 Works with classic framework only (not Core).
 
 HOW TO START
-1. Install OpenCover and ReportGenerator as NUGET packages to one of your test projects first (we need them to appear in packages location).
+1. Install OpenCover and ReportGenerator as NUGET packages to one of your test projects (we need them to appear in packages folder).
 
-2. Put script to the solution root folder.
+2. Put script to the solution's root folder.
 
 3. Configure those three variables at the start
 $mstestLocation = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\mstest.exe' 
-$TestDllsPatterns = @(,'*\bin\Debug\Vse.*.Test.dll')  
+$TestDllsPatterns = @(,'*\bin\Debug\*.Test.dll')  
 $TestableCodeNamespacePatterns = @(,'*') 
 
 4. Run as PS script
