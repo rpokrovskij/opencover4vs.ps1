@@ -1,6 +1,6 @@
 # opencover4vs.ps1
-OpenCover+ReportGenerator smart powershell script for VisualStudio.
-Works for tests based on testing classic framework dll only (not Core).
+Smart powershell script for VisualStudio to start OpenCover+ReportGenerator.
+Works with classic framework only (not Core).
 
 HOW TO START
 1. Install OpenCover and ReportGenerator as NUGET packages to one of your test projects first (we need them to appear in packages location).
