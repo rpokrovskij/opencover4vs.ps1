@@ -9,18 +9,23 @@ HOW TO START
 2. Put script to the solution's root folder.
 
 3. Configure those variables at the start
+```
 $TestProjectsGlobbing = @(,'*.Test.csproj')
 $mstestPath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\MSTest.exe' 
 $dotnetPath = 'C:\Program Files\dotnet\dotnet.exe'
 $toolsFolder = 'packages'
 $NamespaceInclusiveFilters = @(,'*') 
 $netcoreapp = 'netcoreapp1.1'
+```
 
 4. Run as PS script
 
 There are some hidden assumptions about VS test projects
+
    a) you can catch them and only them just using PS globbing, e.g. with pattern '*.Test.csproj'
+   
    b) test projects are already COMPILED and theirs binaries are in project's output folder. 
+   
    c) all test core projects (xUnit) use the same core framework (configured with $netcoreapp default 'netcoreapp1.1') and put them to the same path (e.g. bin\Debug\$netcoreapp)
 
 KNOWN PROBLEMS
@@ -54,5 +59,5 @@ Workouround: recreate files from resources in unit test constructor:
         }
     }
 
-P.S. In case of /nointegration option MSTest.exe working folder is  MSTest.exe location ('C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\'); otherwise the working folder is MSTest.exe output folder e.g. $SolutionFolder\TestResults\mstest\roman_DESKTOP-RLA3VAF 2017-04-04 04_22_07 but in any case those folders doesn't contain `appsettings.json`. Changing OpenCover's working folder doesn't change this.
+P.S. In case of /nointegration option MSTest.exe working folder is the MSTest.exe location ('C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\'); otherwise the working folder is MSTest.exe output folder e.g. $SolutionFolder\TestResults\mstest\roman_DESKTOP-RLA3VAF 2017-04-04 04_22_07 but in any case those folders doesn't contain `appsettings.json`. Changing OpenCover's working folder doesn't change this.
 
