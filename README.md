@@ -18,9 +18,14 @@ $netcoreapp = 'netcoreapp1.1'
 
 4. Run as PS script
 
+There are some hidden assumptions about VS test projects
+   a) you can catch them and only them just using PS globbing, e.g. with pattern '*.Test.csproj'
+   b) test projects are already COMPILED and theirs binaries are in project's output folder. 
+   c) all test core projects (xUnit) use the same core framework (configured with $netcoreapp default 'netcoreapp1.1') and put them to the same path (e.g. bin\Debug\$netcoreapp)
+
 KNOWN PROBLEMS
 
-NUinit attribute `Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute` doesn't work properly. In scenarios like
+NUnit attribute `Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute` doesn't work properly. In scenarios like
 
     [TestClass]
     public class StandardConfigurationUnitTest
