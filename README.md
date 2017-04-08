@@ -26,7 +26,9 @@ There are some hidden assumptions about VS test projects
    
    b) test projects are already COMPILED and theirs binaries are in project's output folder. 
    
-   c) all test core projects (xUnit) use the same core framework (configured with $netcoreapp default 'netcoreapp1.1') and put them to the same path (e.g. bin\Debug\$netcoreapp)
+   c) all test core projects (xUnit) use the same core framework (configured with `$netcoreapp` default 'netcoreapp1.1') and put them to the same path (e.g. bin\Debug\$netcoreapp)
+   
+   d) test project's code (unit test classes) use specific namespaces (e.g. MyApp.Test) that will be not included into the coverage report. If you want to include unit test's code to the coverage report set `$BuildNamespaceExclusiveFilters = $false`
 
 KNOWN PROBLEMS
 
