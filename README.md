@@ -29,7 +29,7 @@ There are some hidden assumptions about VS test projects
    $classicProjectOutput = "bin\Debug"
    $coreProjectOutput = "bin\Debug\$netcoreapp"
 ```
-   c) test project's code (unit test classes) use specific namespaces (e.g. MyApp.Test) that will be not included into the coverage report. If you want to include unit test's code to the coverage report set `$BuildNamespaceExclusiveFilters = $false` . For classic framework this script browse the test assembly's type's namespaces when for Core projects filter
+   c) test project's code (unit test classes) use specific namespaces (e.g. MyApp.Test) that will be not included into the coverage report. If you want to include unit test's code to the coverage report set `$BuildNamespaceExclusiveFilters = $false` . For classic framework this script browse the test assembly's type's namespaces when for Core projects exclusive filter will be setuped with projects "Defaut Namespace"
 
    d) all test core projects (xUnit) use the same core framework (configured with `$netcoreapp` default 'netcoreapp1.1') and put them to the same path (e.g. bin\Debug\$netcoreapp)
       
