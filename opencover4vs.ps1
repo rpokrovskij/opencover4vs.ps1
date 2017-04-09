@@ -111,9 +111,8 @@ Function GetFilter($inclusive, $exclusive) {
      return $filters;
 }
 
-
+#STEP 7. Execute OpenCover
 If ($testClassicProjects){
-    #STEP 7. Execute Classic
     $mstestOutputFolderPath = "$testsResultsFolderPath\mstestOutput"
     New-Item -ItemType Directory -Force -Path $mstestOutputFolderPath | Out-Null
     If($debugMode){
