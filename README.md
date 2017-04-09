@@ -13,9 +13,8 @@ HOW TO START
 $TestProjectsGlobbing = @(,'*.Test.csproj')
 $mstestPath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\MSTest.exe' 
 $dotnetPath = 'C:\Program Files\dotnet\dotnet.exe'
-$toolsFolder = 'packages'
-$NamespaceInclusiveFilters = @(,'*') 
 $netcoreapp = 'netcoreapp1.1'
+$NamespaceInclusiveFilters = @(,'*') # inlude all namespaces (which pdb found)
 ```
 
 4. Run as PS script. You should find the report in the TestsResults\report\index.html 
