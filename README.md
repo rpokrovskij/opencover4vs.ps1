@@ -19,20 +19,21 @@ $NamespaceInclusiveFilters = @(,'*') # inlude all namespaces (which pdb found)
 
 4. Run as PS script. You should find the report in the TestsResults\report\index.html 
 
-There are some hidden assumptions about VS test projects
+There are some hidden assumptions about VS test projects:
 
-   a) you can catch them and only them just using PS globbing, e.g. with pattern '*.Test.csproj'
+   a) you can catch them and only them just using path globing, e.g. with pattern `'*.Test.csproj'` (but you can use several patterns)
    
    b) test projects are already COMPILED and theirs binaries are in project's output folder. 
+   
+   c) all xUnit projects from your solution use the same core framework (configured with `$netcoreapp` default 'netcoreapp1.1') and output folders are configured with the same path:
+      
 ```   
    $classicProjectOutput = "bin\Debug"
    $coreProjectOutput = "bin\Debug\$netcoreapp"
 ```
-   c) test project's code (unit test classes) use specific namespaces (e.g. MyApp.Test) that will be not included into the coverage report. If you want to include unit test's code to the coverage report set `$BuildNamespaceExclusiveFilters = $false` . For classic framework this script browse the test assembly's type's namespaces when for Core projects exclusive filter will be setuped with projects "Defaut Namespace"
-
-   d) all test core projects (xUnit) use the same core framework (configured with `$netcoreapp` default 'netcoreapp1.1') and put them to the same path (e.g. bin\Debug\$netcoreapp)
-      
-   e) you should setup for ALL your Core projects full PDB format (Project Propertes\Build\Advanced). Not only for test project, but for all Core projects (opencover doesn't understand portable PDB)
+   d) the test project's code (unit test classes) should use specific namespace (e.g. `MyApp.Test`) to build correct exclusive filter . If you want to escape building exclusive filters then configure `$BuildNamespaceExclusiveFilters = $false` (also do it for debugging the script). Important,  building exclusive filters for NUnit tests, this script collect namespaces of types that belongs to test assembly when for Core projects exclusive filter will be setuped with xUnit project's "Defaut Namespace".
+         
+   e) you should configure ALL of your Core projects to use full PDB format (Project Propertes>Build>Advanced) instead of default portable. Opencover doesn't understand portable PDB.
 
 KNOWN PROBLEMS
 
