@@ -1,7 +1,7 @@
 # Generate code coverage report using OpenCore and ReportGenerator
 # Put this script to Visual Studio solution folder. 
 
-# You may need to run this:
+# You may need to run this from VS "Package Manager Console" on one of your test projects:
 # nuget install OpenCover -OutputDirectory packages
 # nuget install ReportGenerator -OutputDirectory packages
 # nuget install coveralls.net -OutputDirectory packages     # optional
