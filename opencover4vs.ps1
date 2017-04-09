@@ -5,16 +5,20 @@
 # nuget install ReportGenerator -OutputDirectory packages
 
 # CONFIGURATION
+$TestProjectsGlobbing = @(,'*.Test.csproj')
 $mstestPath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\MSTest.exe' 
 $dotnetPath = 'C:\Program Files\dotnet\dotnet.exe'
-$toolsFolder = 'packages'
-$TestProjectsGlobbing = @(,'*.Test.csproj')  
-$NamespaceInclusiveFilters = @(,'*') 
-$BuildNamespaceExclusiveFilters = $true # For core - test project's efault namespace; For classic - namespaces where test project's types defined
-
-$classicProjectOutput = 'bin\Debug'
-$coreProjectOutput = 'bin\Debug\netcoreapp1.1'
 $netcoreapp = 'netcoreapp1.1'
+$NamespaceInclusiveFilters = @(,'*') # asterix means inlude all namespaces (which pdb found)
+
+$BuildNamespaceExclusiveFilters = $true # For core - test project's efault namespace; For classic - namespaces where test project's types defined
+$testClassicProjects=$true
+$testCoreProjects   =$true
+$debugMode          =$false
+
+$toolsFolder = 'packages'
+$classicProjectOutput = "bin\Debug"
+$coreProjectOutput = "bin\Debug\$netcoreapp"
 
 $testsResultsFolder = 'TestsResults'
 
