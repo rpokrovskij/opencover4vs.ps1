@@ -13,7 +13,7 @@ $dotnetPath = 'C:\Program Files\dotnet\dotnet.exe'
 $netcoreapp = 'netcoreapp1.1'
 
 $NamespaceInclusiveFilters = @(,'*') # asterix means inlude all namespaces (which pdb found)
-$BuildNamespaceExclusiveFilters = $true # For core - test project's efault namespace; For classic - namespaces where test project's types defined
+$BuildNamespaceExclusiveFilters = $true # For core - test project's default namespace; For classic - namespaces where test project's types defined
 
 $testClassicProjects=$true
 $testCoreProjects   =$true
