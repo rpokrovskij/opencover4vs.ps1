@@ -29,7 +29,7 @@ $testClassicProjects=$true
 $testCoreProjects   =$true
 $debugMode          =$false
 
-$excludeGlobbingFromFolders =  @('.git', '.vs', 'docs', $toolsFolder, $testsResultsFolder)
+$excludeGlobbingFromFolders =  @('.git', '.vs', 'docs', $toolsFolder, $testsResultsFolder) # optimization: do not search in those Solution subfolders for test projects
 
 #left it empty if you are not using coveralls (publish report online, integrate it with GitHub. more https://coveralls.io/)
 $env:COVERALLS_REPO_TOKEN = "" 
