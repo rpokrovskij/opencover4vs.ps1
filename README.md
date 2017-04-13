@@ -49,9 +49,12 @@ NUnit attribute `Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttr
         }
     }
 
-this will not move `appsettings.json` to the `MSTest.exe` execution folder, therefore appsettings.json will be unaccessible for test code.
+this will not move `appsettings.json` to the `MSTest.exe` execution folder, therefore `appsettings.json` will be unaccessible for test code.
 
-Workouround: recreate files from resources in unit test constructor.
+Note: In case of `/nointegration` option MSTest.exe working folder is the MSTest.exe location (like `C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\`); otherwise the working folder is MSTest.exe output folder e.g. `$SolutionFolder\TestResults\mstest\roman_DESKTOP-RLA3VAF 2017-04-04 04_22_07` but in any case those folders will not contain `appsettings.json` file so it can't be found. Changing OpenCover's working folder doesn't impact on MSTest working folder.
+
+
+**Workouround**: recreate files from resources in unit test constructor.
 
     [TestClass]
     public class StandardConfigurationUnitTest
@@ -67,7 +70,7 @@ Workouround: recreate files from resources in unit test constructor.
     }
 
 
-Other possible solution is generate .testsettings file with "DeploymentItem" move action and point it as mstest configuration parameter.
+**Other possible solution** is generate .testsettings file with "DeploymentItem" move action and point it as mstest configuration parameter.
 
 ```
 	 <?xml version="1.0" encoding="UTF-8"?>
@@ -90,5 +93,4 @@ Other possible solution is generate .testsettings file with "DeploymentItem" mov
 	</TestSettings>
 ```
 
-P.S. In case of /nointegration option MSTest.exe working folder is the MSTest.exe location ('C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\'); otherwise the working folder is MSTest.exe output folder e.g. $SolutionFolder\TestResults\mstest\roman_DESKTOP-RLA3VAF 2017-04-04 04_22_07 but in any case those folders doesn't contain `appsettings.json`. Changing OpenCover's working folder doesn't change this.
    
