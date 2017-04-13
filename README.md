@@ -66,5 +66,29 @@ Workouround: recreate files from resources in unit test constructor.
         }
     }
 
-P.S. In case of /nointegration option MSTest.exe working folder is the MSTest.exe location ('C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\'); otherwise the working folder is MSTest.exe output folder e.g. $SolutionFolder\TestResults\mstest\roman_DESKTOP-RLA3VAF 2017-04-04 04_22_07 but in any case those folders doesn't contain `appsettings.json`. Changing OpenCover's working folder doesn't change this.
 
+Other possible solution is generate .testsettings file with "DeploymentItem" move action and point it as mstest configuration parameter.
+
+```
+	 <?xml version="1.0" encoding="UTF-8"?>
+	 <TestSettings name="TestSettings1" id="1feaf251-3827-4529-8111-02e4aab1e4aa" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+	 <Description>These are default test settings for a local test run.</Description>
+	 <Deployment>
+	   <DeploymentItem filename="Tests\Routines.Configuration.NETStandard.Test\bin\Debug\appsettings.json" />
+	 </Deployment>
+	 <Execution>
+	 	<TestTypeSpecific>
+	 		<UnitTestRunConfig testTypeId="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b">
+         			<AssemblyResolution>
+         					<TestDirectory useLoadContext="true" />
+         			</AssemblyResolution>
+	 		</UnitTestRunConfig>
+	 	</TestTypeSpecific>
+	  	<AgentRule name="LocalMachineDefaultRole"></AgentRule>
+	  </Execution>
+	  <Properties />
+	</TestSettings>
+```
+
+P.S. In case of /nointegration option MSTest.exe working folder is the MSTest.exe location ('C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\'); otherwise the working folder is MSTest.exe output folder e.g. $SolutionFolder\TestResults\mstest\roman_DESKTOP-RLA3VAF 2017-04-04 04_22_07 but in any case those folders doesn't contain `appsettings.json`. Changing OpenCover's working folder doesn't change this.
+   
