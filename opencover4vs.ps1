@@ -167,7 +167,6 @@ If ($testCoreProjects){
         $filters = GetFilter -in  $NamespaceInclusiveFilters -out $namespaces
         # TODO: parsing the project file we can get TargetFramework 
         $targetargs = "test --no-build -f $netcoreapp -c Debug --verbosity normal $projFilePath"
-        $filters = "+[*]* -[Vse.AdminkaV1.Injected.NETStandard.Test]*" 
 
         echo "opencover -oldStyle -mergeoutput -register:user -mergebyhash -skipautoprops -target:$dotnetPath -targetargs:$targetargs -filter:$filters -output:$openCoverOutputFilePath"
         & $openCoverPath -oldStyle -mergeoutput -register:user -mergebyhash -skipautoprops "-target:$dotnetPath" "-targetargs:$targetargs" "-filter:$filters" "-output:$openCoverOutputFilePath" 
