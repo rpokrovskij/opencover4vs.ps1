@@ -10,7 +10,7 @@
 $TestProjectsGlobbing = @(,'*.Test.csproj')
 $mstestPath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\MSTest.exe' 
 $dotnetPath = 'C:\Program Files\dotnet\dotnet.exe'
-$netcoreapp = 'netcoreapp1.1'
+$netcoreapp = 'netcoreapp2.0'
 
 $NamespaceInclusiveFilters = @(,'*') # asterix means inlude all namespaces (which pdb found)
 $BuildNamespaceExclusiveFilters = $true # For core - test project's default namespace; For classic - namespaces where test project's types defined
@@ -23,13 +23,9 @@ $toolsFolder = 'packages'
 $classicProjectOutput = "bin\Debug"
 $coreProjectOutput = "bin\Debug\$netcoreapp"
 
-$testsResultsFolder = 'TestsResults'
+$testsResultsFolder = 'TestResults'
 
-$testClassicProjects=$true
-$testCoreProjects   =$true
-$debugMode          =$false
-
-$excludeGlobbingFromFolders =  @('.git', '.vs', 'docs', $toolsFolder, $testsResultsFolder) # optimization: do not search in those Solution subfolders for test projects
+$excludeGlobbingFromFolders =  @('.git', '.vs', 'docs', $toolsFolder, $testsResultsFolder)
 
 #left it empty if you are not using coveralls (publish report online, integrate it with GitHub. more https://coveralls.io/)
 $env:COVERALLS_REPO_TOKEN = "" 
@@ -38,8 +34,9 @@ $env:COVERALLS_REPO_TOKEN = ""
 $SolutionFolderPath = $PSScriptRoot #or enter it manually there 
 
 If ($SolutionFolderPath -eq '') {
-    $SolutionFolderPath = 'D:\cot\Vse'
-    #throw "Rut it as script from the VS solution's root folder, this will point the location of the solution."
+    $SolutionFolderPath = 'D:\MySolutionFolder'
+    # NOTE: or is it better to throw an exception?
+    # throw "Rut it as script from the VS solution's root folder, this will point the location of the solution."
 }
 
 # STEP 2. Get OpenCover, ReportGenerator, Coveralls pathes
@@ -56,7 +53,7 @@ $openCoverOutputFilePath         = "$testsResultsFolderPath\opencoverOutput.xml"
 $reportGeneratorOutputFolderPath = "$testsResultsFolderPath\report"
 
 
-# STEP 5. find projects
+# STEP 4. find projects
 $ClassicProjects =  @();
 $CoreProjects = @();
 Get-ChildItem "$SolutionFolderPath" -Directory -Exclude $excludeGlobbingFromFolders | %{ 
@@ -113,11 +110,10 @@ Function GetFilter($inclusive, $exclusive) {
      return $filters;
 }
 
-#STEP 7. Execute OpenCover
+#STEP 5. Execute OpenCover
 If ($testClassicProjects){
     $mstestOutputFolderPath = "$testsResultsFolderPath\mstestOutput"
     New-Item -ItemType Directory -Force -Path $mstestOutputFolderPath | Out-Null
-    # TODO : Generate .testsettings to support DeploymentItem and TFS integration ?
     If($debugMode){
         $trx=1
         Foreach($j in $ClassicProjects){
@@ -173,7 +169,7 @@ If ($testCoreProjects){
     }
 }
 
-# STEP 8. Execute ReportGenerator
+# STEP 6. Execute ReportGenerator
 
 & $reportGeneratorPath "-reports:$openCoverOutputFilePath" "-targetdir:$reportGeneratorOutputFolderPath"
 
@@ -183,9 +179,9 @@ If ( Test-Path env:COVERALLS_REPO_TOKEN) {
     }
 }
 
-# STEP 9. Open report in a browser
+# STEP 7. Open report in a browser
 If (Test-Path "$reportGeneratorOutputFolderPath\index.htm"){
     Invoke-Item "$reportGeneratorOutputFolderPath\index.htm"
 }
 
-# TODO: integrate with https://www.appveyor.com/ ??
+# TODO: integrate with https://www.appveyor.com/
