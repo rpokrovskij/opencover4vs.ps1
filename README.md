@@ -31,7 +31,7 @@ There are some hidden assumptions about VS test projects:
    $classicProjectOutput = "bin\Debug"
    $coreProjectOutput = "bin\Debug\$netcoreapp"
 ```
-   d) the test project's code (unit test classes) should use specific namespace (e.g. `MyApp.Test`) to build correct exclusive filter . If you want to escape building exclusive filters then configure `$BuildNamespaceExclusiveFilters = $false` (also do it for debugging the script). Important,  building exclusive filters for NUnit tests, this script collect namespaces of types that belongs to test assembly when for Core projects exclusive filter will be setuped with xUnit project's "Defaut Namespace".
+   d) to have a nice report we should exclude test's code from the report - to build an exclusive filter; so test's code (unit test classes) should use specific namespace (e.g. `MyApp.Test`) - script will find to 'guess' it and exclude it. If you want to escape building exclusive filters then configure `$BuildNamespaceExclusiveFilters = $false` (also do it for the script's debugging ). How script guess the namespaces to be excluded: for NUnit tests, this script collect namespaces of types that belongs to test assembly when for Core projects exclusive filter will be setuped with xUnit project's "Defaut Namespace".
          
    e) you should configure ALL of your Core projects to use full PDB format (Project Propertes>Build>Advanced) instead of default portable. Opencover doesn't understand portable PDB.
 
