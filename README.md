@@ -4,7 +4,7 @@ Smart powershell script for VisualStudio to generate code coverage report using 
 Works with Classic and Core frameworks (NUnit and xUnit Test projects). Windows only (not Linux).
 
 HOW TO START
-1. Install OpenCover and ReportGenerator as NUGET packages to one of your test projects (we need them to appear in packages folder).
+1. Install OpenCover and ReportGenerator as NUGET packages to one of your test projects (we need them to appear in 'packages' folder).
 
 2. Put script to the solution's root folder.
 
@@ -13,7 +13,7 @@ HOW TO START
 $TestProjectsGlobbing = @(,'*.Test.csproj')
 $mstestPath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\MSTest.exe' 
 $dotnetPath = 'C:\Program Files\dotnet\dotnet.exe'
-$netcoreapp = 'netcoreapp2.0'
+$netcoreapp = 'netcoreapp2.0' # used in [dotnet test -f $netcoreapp] command and therefore as output folder name
 $NamespaceInclusiveFilters = @(,'*') # inlude all namespaces (which pdb found)
 ```
 
