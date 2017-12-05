@@ -13,7 +13,7 @@ HOW TO START
 $TestProjectsGlobbing = @(,'*.Test.csproj')
 $mstestPath = 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\MSTest.exe' 
 $dotnetPath = 'C:\Program Files\dotnet\dotnet.exe'
-$netcoreapp = 'netcoreapp1.1'
+$netcoreapp = 'netcoreapp2.0'
 $NamespaceInclusiveFilters = @(,'*') # inlude all namespaces (which pdb found)
 ```
 
@@ -54,7 +54,7 @@ this will not move `appsettings.json` to the `MSTest.exe` execution folder, ther
 Note: In case of `/nointegration` option MSTest.exe working folder is the MSTest.exe location (like `C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\`); otherwise the working folder is MSTest.exe output folder e.g. `$SolutionFolder\TestResults\mstest\roman_DESKTOP-RLA3VAF 2017-04-04 04_22_07` but in any case those folders will not contain `appsettings.json` file so it can't be found. Changing OpenCover's working folder doesn't impact on MSTest working folder.
 
 
-**Workouround**: recreate files from resources in unit test constructor.
+**Workouround**: recreate config files from resources in the unit test constructor (that what I'm using).
 
     [TestClass]
     public class StandardConfigurationUnitTest
@@ -70,7 +70,7 @@ Note: In case of `/nointegration` option MSTest.exe working folder is the MSTest
     }
 
 
-**Other possible solution** is generate .testsettings file with "DeploymentItem" move action and point it as mstest configuration parameter.
+**Other possible solution** is to generate .testsettings file with "DeploymentItem" move action and point it as mstest configuration parameter (never tried).
 
 ```
 	 <?xml version="1.0" encoding="UTF-8"?>
