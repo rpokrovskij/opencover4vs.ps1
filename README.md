@@ -25,7 +25,7 @@ There are some hidden assumptions about VS test projects:
    
    b) test projects are already COMPILED and theirs binaries are in project's output folder. 
    
-   c) all xUnit projects from your solution use the same core framework (configured with `$netcoreapp` default 'netcoreapp1.1') and output folders are configured with the same path:
+   c) all xUnit projects from your solution use the same core framework (configured with `$netcoreapp` default 'netcoreapp2.0') and output folders are configured with the same path:
       
 ```   
    $classicProjectOutput = "bin\Debug"
