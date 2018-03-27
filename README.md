@@ -37,7 +37,7 @@ There are some hidden assumptions about VS test projects:
 
 KNOWN PROBLEMS
 
-NUnit attribute `Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute` doesn't work properly. In scenarios like
+MSTest attribute `Microsoft.VisualStudio.TestTools.UnitTesting.DeploymentItemAttribute` doesn't work properly. In scenarios like
 
     [TestClass]
     public class StandardConfigurationUnitTest
