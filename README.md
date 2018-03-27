@@ -1,7 +1,7 @@
 # opencover4vs.ps1
 Smart powershell script for VisualStudio to generate code coverage report using OpenCore and ReportGenerator (and optionally publish them with Coveralls ). Configured with project files path globing (e.g *.Test.csproj). 
 
-Works with Classic and Core frameworks (NUnit and xUnit Test projects). Windows only (not Linux).
+Works with Classic and Core frameworks (MSTest, NUnit and xUnit Test projects). Windows only (not Linux).
 
 HOW TO START
 1. Install OpenCover and ReportGenerator as NUGET packages to one of your test projects (we need them to appear in 'packages' folder).
